@@ -24,7 +24,7 @@ COMMAND_LIST = """List of commands
   - End
 """
 balance = 0
-
+shelve = {}
 while True:
     print(COMMAND_LIST)
     action = input("Select an option from above: ")
@@ -40,7 +40,7 @@ while True:
         - subtract
         - Type 'Stop' to return to main menu."""
         print(add_sub_list)
-        option = input(": " )
+        option = input(": ")
         option = option.casefold()
         while True:
             if option == "stop":
@@ -49,15 +49,28 @@ while True:
             elif option == "add":
                 addition = int(input("How much amount do you want to add?:"))
                 balance += addition
+                break
             elif option == "subtract":
-                sub = int(input("How much amount do you want to add?:"))
+                sub = int(input("How much amount do you want to deduct?:"))
                 balance -= sub
+                break
+            else:
+                print(f"{option} is incorrect, please enter a correct input")
 
     elif action == "sale":
         print("sale")
 
     elif action == "purchase":
-        print("purchase")
+        product_name = input("Please enter the name of the product purchased: ")
+        product_price = int(input("Please enter the price of the product: "))
+
+        if product_name not in shelve:
+            shelve[product_name] = {"price": 0, "quantity": 0}
+
+        shelve[product_name]["quantity"] += 1
+        shelve[product_name]["price"] = product_price
+
+        balance -= shelve[product_name]["price"]
 
     elif action == "account":
         print(f"Current Balance is: {balance}")
@@ -71,4 +84,5 @@ while True:
     elif action == "review":
         print("review")
 
-
+    else:
+        print(f"{action} is incorrect, please enter a correct input")
