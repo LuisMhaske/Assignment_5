@@ -14,12 +14,61 @@ end ->
 
 """
 COMMAND_LIST = """List of commands
-  - balance
-  - sale
-  - purchase
-  - account
-  - list
-  - warehouse
-  - review
-  - end
+  - Balance
+  - Sale
+  - Purchase
+  - Account
+  - List
+  - Warehouse
+  - Review
+  - End
 """
+balance = 0
+
+while True:
+    print(COMMAND_LIST)
+    action = input("Select an option from above: ")
+    action = action.casefold()
+
+    if action == "end":
+        print("Ending the instance")
+        break
+
+    elif action == "balance":
+        add_sub_list = """Select an option
+        - add
+        - subtract
+        - Type 'Stop' to return to main menu."""
+        print(add_sub_list)
+        option = input(": " )
+        option = option.casefold()
+        while True:
+            if option == "stop":
+                print("Returning to main menu.")
+                break
+            elif option == "add":
+                addition = int(input("How much amount do you want to add?:"))
+                balance += addition
+            elif option == "subtract":
+                sub = int(input("How much amount do you want to add?:"))
+                balance -= sub
+
+    elif action == "sale":
+        print("sale")
+
+    elif action == "purchase":
+        print("purchase")
+
+    elif action == "account":
+        print(f"Current Balance is: {balance}")
+
+    elif action == "list":
+        print("list")
+
+    elif action == "warehouse":
+        print("warehouse")
+
+    elif action == "review":
+        print("review")
+
+
